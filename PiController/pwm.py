@@ -10,10 +10,10 @@ def checknum(c):
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(16, GPIO.OUT)
-#GPIO.output(16,True)
 
-pin = GPIO.PWM(16,300)
-dc =0
+pin = GPIO.PWM(16,1500)
+dc =50
+freq = 1500
 pin.start(dc)
 while True:
     c = raw_input("input +/-:")
@@ -22,24 +22,22 @@ while True:
         print c
         c = int(c)
         print c
-        dc=dc+c
-        
-        if dc>100:
-            dc=100
-        if dc<0:
-            dc=0
-            
-        pin.ChangeDutyCycle(dc)
-        print dc
+        freq=freq+c
+
+        if freq>2000:
+            freq=2000
+        if freq<1000:
+            freq=1000
+
+        pin.ChangeFrequency(freq)
+        print freq
 
     if c=="exit":
         break
 
 
-#GPIO.output(16,False)
 pin.stop()
 
-print "hello pi"
 
 GPIO.cleanup()
 
