@@ -17,13 +17,9 @@ freq = 1500
 pin.start(dc)
 while True:
     c = raw_input("input +/-:")
-
     if str.isdigit(c) or (c[:1] == "-" and str.isdigit(c[1:])):
-        print c
         c = int(c)
-        print c
         freq=freq+c
-
         if freq>2000:
             freq=2000
         if freq<1000:
